@@ -126,7 +126,7 @@ function makeTable(mode) {
         if(t.checked == true)    type = t.value;
     })
     
-    if(month == "10") {
+    if(year == "2024" && month == "10") {
         divEl.innerText = "해당 시험의 성적 발표일은 10월 30일(수)입니다."
         return;
     }
