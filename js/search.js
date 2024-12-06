@@ -65,7 +65,7 @@ typeEls.forEach((type) => {
 
         // 월 디폴트값 설정
         if(type == "sat" && yearEl.value == "2025") {
-            document.querySelector('option[value = "9"]').selected = true; 
+            document.querySelector('option[value = "11"]').selected = true; 
         } else if(type == "3rd" && yearEl.value == "2024") {
             document.querySelector('option[value = "10"]').selected = true; 
         } else if(type == "2nd" && yearEl.value == "2024") {
@@ -99,7 +99,7 @@ function yearChange() {
 
     // 월 디폴트값 설정
     if(type == "sat" && yearEl.value == "2025") {
-        document.querySelector('option[value = "9"]').selected = true; 
+        document.querySelector('option[value = "11"]').selected = true; 
     } else if(type == "3rd" && yearEl.value == "2024") {
         document.querySelector('option[value = "10"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2024") {
@@ -125,11 +125,6 @@ function makeTable(mode) {
     typeEls.forEach((t) => {
         if(t.checked == true)    type = t.value;
     })
-
-    if(type == "sat" && year == "2025" && month == "11") {
-        divEl.innerText = "해당 시험의 성적 발표일은 12월 6일(금)입니다."
-        return;
-    }
 
     if(divEl.firstChild)
         divEl.removeChild(divEl.firstChild);
