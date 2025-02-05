@@ -195,8 +195,8 @@ function makeTable(mode) {
                 ex1.children[1].innerText = "사회";
                 ex2.children[0].innerText = "과학";
             } else {
-                ex1.children[1].innerText = "통합 사회";
-                ex2.children[0].innerText = "통합 과학";
+                ex1.children[1].innerText = "통합사회";
+                ex2.children[0].innerText = "통합과학";
             }
             ex1.children[3].innerText = 
                 ex1.children[4].innerText = 
