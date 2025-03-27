@@ -37,7 +37,7 @@ typeEls.forEach((type) => {
         let years, months;
         // years와 months의 옵션 지정 ({수능, {3학년, {1,2학년}}}의 논리로 구성되어 있음)
         if(type == "sat") {
-            years = ["2025", "2024", "2023", "2022"]; 
+            years = ["2026", "2025", "2024", "2023", "2022"]; 
             months = ["6", "9", "11"];
             TNSE.innerText = ""
         } else {
@@ -100,8 +100,10 @@ function yearChange() {
     changeOpts(monthEl, months, type == "sat");
 
     // 월 디폴트값 설정
-    if(type == "sat" && yearEl.value == "2025") {
+    if(type == "sat" && yearEl.value != "2026") {
         document.querySelector('option[value = "11"]').selected = true; 
+    } else if(type == "sat"){
+        document.querySelector('option[value = "6"]').selected = true; 
     } else if(type == "3rd" && yearEl.value == "2024") {
         document.querySelector('option[value = "10"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2024") {
@@ -129,11 +131,11 @@ function makeTable(mode) {
     })
 
     if(type == "sat" && year == "2026" && month == "6") {
-        divEl.innerText = "해당 시험의 성적 발표일은 아직 정해지지 않았습니다."
+        divEl.innerText = "해당 시험의 성적 발표일은 7월 1일(화)입니다."
         return;
     }
     if(type == "sat" && year == "2026" && month == "9") {
-        divEl.innerText = "해당 시험의 성적 발표일은 아직 정해지지 않았습니다."
+        divEl.innerText = "해당 시험의 성적 발표일은 9월 30일(화)입니다."
         return;
     }
     if(type == "sat" && year == "2026" && month == "11") {
