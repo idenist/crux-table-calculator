@@ -26,10 +26,9 @@
         <span style="text-align:center">☆★Update★☆<br></span>
         <p style="line-height: 150%">
             <object style="color:red"><strong>[2026-04]</strong> 2022학년도 고3 평가원 데이터 삭제 (예정)<br></object>
-            <object style="color:red"><strong>[2025-04-14]</strong> 2025학년도 3월 고1, 고2, 고3 데이터 추가 (예정)<br></object>
+            <strong>[2025-04-14]</strong> 2025학년도 3월 고1, 고2, 고3 데이터 추가 <object style="color:red">(고3 국어/수학은 아직!)</object><br></object>
             <strong>[2024-12-06]</strong> 2025학년도 수능 데이터 추가<br>
             <strong>[2024-10-30]</strong> 2024학년도 10월 고1, 고2, 고3 데이터 추가<br>
-            <strong>[2024-10-02]</strong> 2025학년도 9월 모평 데이터 추가<br>
         </p>
     </div>
     <div class="fieldset">
@@ -37,9 +36,9 @@
             <legend>시험 검색</legend>
             <p id="test_type">
                 시험 유형 : 
-                <input type="radio" id="sat" name="test_type" value="sat" checked>
+                <input type="radio" id="sat" name="test_type" value="sat">
                 <label for="sat">고3 평가원</label>
-                <input type="radio" id="3rd" name="test_type" value="3rd">
+                <input type="radio" id="3rd" name="test_type" value="3rd" checked>
                 <label for="3rd">고3 교육청</label>
                 <input type="radio" id="2nd" name="test_type" value="2nd">
                 <label for="2nd">고2 교육청</label>
@@ -48,10 +47,9 @@
             </p>
 
             <!-- 고3 6평, 9평, 수능 성적표 나온 날 (시험 유형 checked 고3 평가원으로 바꿀 것) -->
-            <p id="test_name">
+            <!-- <p id="test_name">
                 시험명 : 
                 <select name='year' id='year' onchange='yearChange()'>
-                    <!-- <option value="2026" selected>2026</option> -->
                     <option value="2026">2026</option>
                     <option value="2025" selected>2025</option> 
                     <option value="2024">2024</option> 
@@ -64,10 +62,10 @@
                     <option value="11" selected>대학수학능력시험</option>
                 </select>
                 <span></span>
-            </p>
+            </p> -->
 
             <!-- 고3 3모, 5모, 7모, 10모 성적표 나온 날 (시험 유형 checked 고3 교육청으로 바꿀 것)-->
-            <!-- <p id="test_name">
+            <p id="test_name">
                 시험명 : 
                 <select name='year' id='year' onchange='yearChange()'>
                     <option value="2025" selected>2025</option> 
@@ -79,7 +77,7 @@
                     <option value="3">3</option>
                 </select>
                 <span>월 고3 전국연합학력평가</span>
-            </p> -->
+            </p>
 
             <!-- 고2 6모, 9모 성적표 나온 날 (시험 유형 checked 고2 교육청으로 바꿀 것)-->
             <!-- <p id="test_name">
