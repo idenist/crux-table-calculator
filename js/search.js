@@ -90,7 +90,7 @@ function yearChange() {
     if(type == "sat") {
         months = ["6", "9", "11"];
     } else if(type == "3rd") {
-        months = (yearEl.value == 2025) ? ["3"] :
+        months = (yearEl.value == 2025) ? ["3", "5"] :
                 (yearEl.value >= 2024) ? ["3", "5", "7", "10"] : ["3", "4", "7", "10"];
     } else {
         months = (yearEl.value == 2025) ? ["3"] :
