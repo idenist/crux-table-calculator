@@ -66,8 +66,8 @@ typeEls.forEach((type) => {
         // 월 디폴트값 설정
         if(type == "sat" && yearEl.value == "2025") {
             document.querySelector('option[value = "11"]').selected = true; 
-        } else if(type == "3rd" && yearEl.value == "2024") {
-            document.querySelector('option[value = "10"]').selected = true; 
+        } else if(type == "3rd" && yearEl.value == "2025") {
+            document.querySelector('option[value = "5"]').selected = true; 
         } else if(type == "2nd" && yearEl.value == "2024") {
             document.querySelector('option[value = "10"]').selected = true; 
         } else if(type == "1st" && yearEl.value == "2024") {
@@ -105,7 +105,7 @@ function yearChange() {
     } else if(type == "sat"){
         document.querySelector('option[value = "6"]').selected = true; 
     } else if(type == "3rd" && yearEl.value == "2025") {
-        document.querySelector('option[value = "3"]').selected = true; 
+        document.querySelector('option[value = "5"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2025") {
         document.querySelector('option[value = "3"]').selected = true; 
     } else if(type == "1st" && yearEl.value == "2025") {
@@ -130,10 +130,6 @@ function makeTable(mode) {
         if(t.checked == true)    type = t.value;
     })
 
-    if(type == "3rd" && year == "2025" && month == "5") {
-        divEl.innerText = "해당 시험의 성적 발표일은 5월 21일(수)입니다."
-        return;
-    }
     if(type != "sat" && year == "2025" && month == "6") {
         divEl.innerText = "해당 시험의 성적 발표일은 6월 20일(금)입니다."
         return;
@@ -148,11 +144,6 @@ function makeTable(mode) {
     }
     if(type == "sat" && year == "2026" && month == "11") {
         divEl.innerText = "해당 시험의 성적 발표일은 12월 5일(금)입니다."
-        return;
-    }
-    if(type != "sat" && year == "2025" && (month == "5" || month == "6" || month == "7"
-        || month == "9" || month == "10")) {
-        divEl.innerText = "해당 시험의 성적 발표일은 아직 정해지지 않았습니다."
         return;
     }
 
