@@ -311,7 +311,8 @@ function showInfo1() {
         if(!korScore) {
             korEl[3].innerText = korEl[4].innerText = korEl[5].innerText = ''; 
         } else if (0 <= korScore && korScore <= 100 
-            && korScore != 1 && korScore != 99) {
+            && korScore != 1 && korScore != 99
+            && korScore % 1 == 0) {
             korEl[3].innerText = data[key]["국어"][100-korScore][0];
             korEl[4].innerText = data[key]["국어"][100-korScore][1];
             korEl[5].innerText = data[key]["국어"][100-korScore][2];
@@ -328,7 +329,7 @@ function showInfo1() {
         // 수학 표준점수, 백분위, 등급 출력 부분 (고1, 고2)
         if(!mathScore) {
             mathEl[3].innerText = mathEl[4].innerText = mathEl[5].innerText = ''; 
-        } else if (0 <= mathScore && mathScore <= 100 && mathScore != 1 && mathScore != 99) {
+        } else if (0 <= mathScore && mathScore <= 100 && mathScore != 1 && mathScore != 99 && mathScore % 1 == 0) {
             mathEl[3].innerText = data[key]["수학"][100-mathScore][0];
             mathEl[4].innerText = data[key]["수학"][100-mathScore][1];
             mathEl[5].innerText = data[key]["수학"][100-mathScore][2];
@@ -414,6 +415,7 @@ function showInfo1() {
     const ESSN = engEl[2].firstChild.getAttributeNode("style");
     engEl[5].innerText = 
         engScore == "" ? "" :
+        engScore % 1 ? "X" : 
         engScore == 100 ? 1 : 
         0 <= engScore && engScore <= 9 && engScore != 1 ? 9 :
         2 <= engScore && engScore <= 98 ? 10-parseInt(engScore/10) : 
