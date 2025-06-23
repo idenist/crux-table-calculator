@@ -341,3 +341,96 @@ const tableType4 =
     </li>\
 </ul>\
 ';
+
+const tableType5 = 
+'<table>\
+    <caption></caption>\
+    <thead>\
+        <tr>\
+            <th width = "15%">과목</th>\
+            <th width = "20%">선택과목</th>\
+            <th width = "15%">원점수</th>\
+            <th width = "14%">표준점수</th>\
+            <th width = "14%">백분위</th>\
+            <th width = "8%">등급</th>\
+            <th width = "14%">통계자료</th>\
+        </tr>\
+    </thead>\
+    <tbody>\
+        <tr class="kor">\
+            <td>국어</td>\
+            <td>-</td>\
+            <td class="kw"><input type="text" name="score" maxlength="3" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
+            <td class="kp"></td>\
+            <td class="kb"></td>\
+            <td class="kd"></td>\
+            <td><button type="button" onclick="printTable(0)">보기</button></td>\
+        </tr>\
+        <tr class="math">\
+            <td>수학</td>\
+            <td>-</td>\
+            <td class="mw"><input type="text" name="score" maxlength="3" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
+            <td class="mp"></td>\
+            <td class="mb"></td>\
+            <td class="md"></td>\
+            <td><button type="button" onclick="printTable(1)">보기</button></td>\
+        </tr>\
+        <tr>\
+            <td>영어</td>\
+            <td>-</td>\
+            <td class="ew"><input type="text" name="score" maxlength="3" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
+            <td>-</td>\
+            <td>-</td>\
+            <td class="ed"></td>\
+            <td><button type="button" onclick="printTable(2)">보기</button></td>\
+        </tr>\
+        <tr>\
+            <td>한국사</td>\
+            <td>-</td>\
+            <td class="hw"><input type="text" name="score" maxlength="2" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
+            <td>-</td>\
+            <td>-</td>\
+            <td class="hd"></td>\
+            <td><button type="button" onclick="printTable(3)">보기</button></td>\
+        </tr>\
+        <tr id="ex1">\
+            <td rowspan="2">탐구</td>\
+            <td class="ex1s">통합사회</td>\
+            <td class="ex1w"><input type="text" name="score" maxlength="4" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
+            <td class="ex1p"></td>\
+            <td class="ex1b"></td>\
+            <td class="ex1d"></td>\
+            <td><button type="button" onclick="printTable(4)">보기</button></td>\
+        </tr>\
+        <tr id="ex2">\
+            <td class="ex2s">통합과학</td>\
+            <td class="ex2w"><input type="text" name="score" maxlength="4" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
+            <td class="ex2p"></td>\
+            <td class="ex2b"></td>\
+            <td class="ex2d"></td>\
+            <td><button type="button" onclick="printTable(5)">보기</button></td>\
+        </tr>\
+        <tr id="sfl">\
+            <td>제2외국어/한문</td>\
+            <td class="ss"><select onchange=showInfo1()></select></td>\
+            <td class="sw"><input type="text" name="score" maxlength="2" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
+            <td class>-</td>\
+            <td class>-</td>\
+            <td class="sd"></td>\
+            <td><button type="button" onclick="printTable(6)">보기</button></td>\
+        </tr>\
+    </tbody>\
+</table>\
+    <ul>\
+    <li>모바일로 접속하신 경우, 반드시 <strong>선택과목을 먼저 지정</strong>하신 후에 점수를 입력해주세요.<br>\
+    점수를 먼저 입력하고 선택과목을 나중에 바꾸면 계산 결과가 이전 선택과목 기준으로 출력되는 문제가 있습니다.</li>\
+    <li>유효하지 않은 원점수를 입력하면 결과가 "X"로 나옵니다.<br>\
+        <span style="color:blue">\
+            *** 유효한 원점수란? ***<br>\
+            1) 국어, 수학, 영어: 0부터 100까지의 정수 <span style="color:red">(1과 99는 유효하지 않음)</span><br>\
+            2) 한국사: 0부터 50까지의 정수 <span style="color:red">(1과 49는 유효하지 않음)</span><br>\
+            3) 탐구: 0부터 50까지의 실수 중 0.5로 나누어 떨어지는 수 <span style="color:red">(0.5와 1과 49와 49.5는 유효하지 않음)</span><br>\
+            4) 제2외국어/한문: 0부터 50까지의 정수</li>\
+        </span>\
+    </ul>\
+';

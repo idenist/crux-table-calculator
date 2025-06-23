@@ -68,10 +68,10 @@ typeEls.forEach((type) => {
             document.querySelector('option[value = "11"]').selected = true; 
         } else if(type == "3rd" && yearEl.value == "2025") {
             document.querySelector('option[value = "5"]').selected = true; 
-        } else if(type == "2nd" && yearEl.value == "2024") {
-            document.querySelector('option[value = "10"]').selected = true; 
-        } else if(type == "1st" && yearEl.value == "2024") {
-            document.querySelector('option[value = "10"]').selected = true; 
+        } else if(type == "2nd" && yearEl.value == "2025") {
+            document.querySelector('option[value = "6"]').selected = true; 
+        } else if(type == "1st" && yearEl.value == "2025") {
+            document.querySelector('option[value = "6"]').selected = true; 
         }
     })
 })
@@ -90,7 +90,7 @@ function yearChange() {
     if(type == "sat") {
         months = ["6", "9", "11"];
     } else if(type == "3rd") {
-        months = (yearEl.value == 2025) ? ["3", "5"] :
+        months = (yearEl.value == 2025) ? ["3", "5", "7"] :
                 (yearEl.value >= 2024) ? ["3", "5", "7", "10"] : ["3", "4", "7", "10"];
     } else {
         months = (yearEl.value == 2025) ? ["3", "6"] :
@@ -107,9 +107,9 @@ function yearChange() {
     } else if(type == "3rd" && yearEl.value == "2025") {
         document.querySelector('option[value = "5"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2025") {
-        document.querySelector('option[value = "3"]').selected = true; 
+        document.querySelector('option[value = "6"]').selected = true; 
     } else if(type == "1st" && yearEl.value == "2025") {
-        document.querySelector('option[value = "3"]').selected = true; 
+        document.querySelector('option[value = "6"]').selected = true; 
     }
 }
 // 성적표 생성 함수
@@ -130,12 +130,18 @@ function makeTable(mode) {
         if(t.checked == true)    type = t.value;
     })
 
-    if(type != "sat" && year == "2025" && month == "6") {
-        divEl.innerText = "해당 시험의 성적 발표일은 6월 20일(금)입니다."
-        return;
-    }
+    // 탐구 통합
+    const newSystem = (type == "1st" && year >= 2025 && !(year == 2025 && month == 3))  
+                        || (type == "2nd" && year >= 2026)
+                        || (type == "3rd" && year >= 2027)
+                        || (type == "sat" && year >= 2028)
+
     if(type == "sat" && year == "2026" && month == "6") {
         divEl.innerText = "해당 시험의 성적 발표일은 7월 1일(화)입니다."
+        return;
+    }
+    if(year == "2025" && month == "7") {
+        divEl.innerText = "해당 시험의 성적 발표일은 7월 23일(수)입니다."
         return;
     }
     if(type == "sat" && year == "2026" && month == "9") {
@@ -152,7 +158,9 @@ function makeTable(mode) {
 
     // 국어와 수학이 공통/선택으로 나뉘어 있는가? (있으면 tableType2, 없으면 tableType1)
     if(mode == 0) {
-        if(type == "sat" || type == "3rd") 
+        if(newSystem)
+            divEl.innerHTML = tableType5;
+        else if(type == "sat" || type == "3rd") 
             divEl.innerHTML = tableType2;
         else
             divEl.innerHTML = tableType1;
@@ -189,7 +197,20 @@ function makeTable(mode) {
     // 탐구 처리 부분
     const ex1 = document.querySelector("#ex1");
     const ex2 = document.querySelector("#ex2");
-    if(type == "1st") {
+    if(newSystem) {
+        if(mode == 0) {
+            if(type == "1st" && month == "3") {
+                ex1.children[1].innerText = "사회";
+                ex2.children[0].innerText = "과학";
+            } else {
+                ex1.children[1].innerText = "통합사회";
+                ex2.children[0].innerText = "통합과학";
+            }
+        } else {
+            ex1.children[1].innerText = "통합사회";
+            ex2.children[0].innerText = "통합과학";
+        } 
+    } else if(type == "1st") {
         // 1학년인가? (1학년이면 탐구 선택과목 자동 지정, 표준점수와 등급은 지원 안 됨)
         if(mode == 0) {
             if(month == "3") {
@@ -199,6 +220,7 @@ function makeTable(mode) {
                 ex1.children[1].innerText = "통합사회";
                 ex2.children[0].innerText = "통합과학";
             }
+
             ex1.children[3].innerText = 
                 ex1.children[4].innerText = 
                 ex2.children[2].innerText = 
@@ -441,8 +463,43 @@ function showInfo1() {
     const exp2Score = exp2El[1].firstChild.value; // 탐구2 원점수
     const Ex1SSN = exp1El[2].firstChild.getAttributeNode("style");
     const Ex2SSN = exp2El[1].firstChild.getAttributeNode("style");
-    if(type == "1st") {
-        // 1학년 탐구는 절대평가
+    // 탐구 통합
+    const newSystem = (type == "1st" && year >= 2025 && !(year == 2025 && month == 3))  
+                        || (type == "2nd" && year >= 2026)
+                        || (type == "3rd" && year >= 2027)
+                        || (type == "sat" && year >= 2028)
+
+    if(newSystem) {
+        let subject = "통합사회";
+        // 원점수 처리 (탐구 1선택)
+        if(!exp1Score) {
+            exp1El[3].innerText = exp1El[4].innerText = exp1El[5].innerText = ''; 
+        } else if (0 <= exp1Score && exp1Score <= 50 
+            && exp1Score != 0.5 && exp1Score != 1 && exp1Score != 49 && exp1Score != 49.5
+            && exp1Score*2 % 1 == 0) {
+            exp1El[3].innerText = data[key][subject][100-exp1Score*2][0];
+            exp1El[4].innerText = data[key][subject][100-exp1Score*2][1];
+            exp1El[5].innerText = data[key][subject][100-exp1Score*2][2];
+        } else {
+            exp1El[3].innerText = exp1El[4].innerText = exp1El[5].innerText = 'X'; 
+        }
+        Ex1SSN.value = exp1El[5].innerText != "X" ? "color: #3030EE" : "color: #EE3030";
+
+        subject = "통합과학";
+        // 원점수 처리 (탐구 2선택)
+        if(!exp2Score) {
+            exp2El[2].innerText = exp2El[3].innerText = exp2El[4].innerText = ''; 
+        } else if (0 <= exp2Score && exp2Score <= 50 
+            && exp2Score != 0.5 && exp2Score != 1 && exp2Score != 49 && exp2Score != 49.5
+            && exp2Score*2 % 1 == 0) {
+            exp2El[2].innerText = data[key][subject][100-exp2Score*2][0];
+            exp2El[3].innerText = data[key][subject][100-exp2Score*2][1];
+            exp2El[4].innerText = data[key][subject][100-exp2Score*2][2];
+        } else {
+            exp2El[2].innerText = exp2El[3].innerText = exp2El[4].innerText = 'X'; 
+        }
+        Ex2SSN.value = exp2El[4].innerText != "X" ? "color: #3030EE" : "color: #EE3030";
+    } else if(type == "1st") {
         exp1El[5].innerText = 
             exp1Score == "" ? "" :
             exp1Score == 50 ? 1 : 
@@ -463,7 +520,7 @@ function showInfo1() {
         // 원점수 처리 (탐구 1선택)
         if(!exp1Score) {
             exp1El[3].innerText = exp1El[4].innerText = exp1El[5].innerText = ''; 
-        } else if (0 <= exp1Score && exp1Score <= 50 && exp1Score != 1 && exp1Score != 49) {
+        } else if (0 <= exp2Score && exp2Score <= 50 && exp2Score != 1 && exp2Score != 49) {
             exp1El[3].innerText = data[key][subject][50-exp1Score][0];
             exp1El[4].innerText = data[key][subject][50-exp1Score][1];
             exp1El[5].innerText = data[key][subject][50-exp1Score][2];
@@ -503,6 +560,12 @@ function showInfo1() {
 
 function showInfo2() {
     let key = year + month + type; // 딕셔너리형 데이터의 key
+    // 탐구 통합
+    const newSystem = (type == "1st" && year >= 2025 && !(year == 2025 && month == 3))  
+                        || (type == "2nd" && year >= 2026)
+                        || (type == "3rd" && year >= 2027)
+                        || (type == "sat" && year >= 2028)
+
     // 국어&수학 처리 부분. 1~2학년은 if문에서, 3학년은 else문에서 처리
     const kor = document.querySelector("#kor").children;
     const math = document.querySelector("#math").children;
@@ -744,60 +807,59 @@ function showInfo2() {
         }
     }
 
-    if(type != "1st") {
-        const ex1 = document.querySelector("#ex1").children;
-        const ex2 = document.querySelector("#ex2").children;
-        const E1 = ex1[1].firstChild.value;
-        const E2 = ex2[0].firstChild.value;
-        const ex1Std = ex1[2].firstChild.value;
-        const ex2Std = ex2[1].firstChild.value;
-        const ex1Output = type == "2nd" ? ex1[3] : ex1[4];
-        const ex2Output = type == "2nd" ? ex2[2] : ex2[3];
+    const ex1 = document.querySelector("#ex1").children;
+    const ex2 = document.querySelector("#ex2").children;
+    const E1 = newSystem ? ex1[1].innerText : ex1[1].firstChild.value;
+    const E2 = newSystem ? ex2[0].innerText :ex2[0].firstChild.value;
+    const ex1Std = ex1[2].firstChild.value;
+    const ex2Std = ex2[1].firstChild.value;
+    const ex1Output = (newSystem || type == "2nd") ? ex1[3] : ex1[4];
+    const ex2Output = (newSystem || type == "2nd") ? ex2[2] : ex2[3];
 
-        // 탐구1 처리 부분
-        let idx = 0;
-        if(!ex1Std) {
-            ex1Output.innerText = "";
-        } else if(0 <= ex1Std && ex1Std <= 100) {
-            while(idx < data[key][E1].length && data[key][E1][idx][0] != ex1Std) idx++;
-            if(idx >= data[key][E1].length) {
-                ex1Output.innerText = "N/A";
-            } else {
-                let idx2 = data[key][E1].length-1;
-                while(idx2 > -1 && data[key][E1][idx2][0] != ex1Std) idx2--;
-                if(idx != idx2) {
-                    ex1Output.innerText = `${50-idx2} ~ ${50-idx}`
-                } else {
-                    ex1Output.innerText = 50-idx;
-                }
-            } 
+    // 탐구1 처리 부분
+    let idx = 0;
+    if(!ex1Std) {
+        ex1Output.innerText = "";
+    } else if(0 <= ex1Std && ex1Std <= 100) {
+        while(idx < data[key][E1].length && data[key][E1][idx][0] != ex1Std) idx++;
+        if(idx >= data[key][E1].length) {
+            ex1Output.innerText = "N/A";
         } else {
-            ex1Output.innerText = "X";
-        }
-        ex1[2].firstChild.style = ex1Output.innerText != "X" ? "color: #3030EE" : "color: #EE3030"; 
-
-        // 수학 처리 부분 (고1, 고2)
-        idx = 0;
-        if(!ex2Std) {
-            ex2Output.innerText = "";
-        } else if(0 <= ex2Std && ex2Std <= 100) {
-            while(idx < data[key][E2].length && data[key][E2][idx][0] != ex2Std) idx++;
-            if(idx >= data[key][E2].length) {
-                ex2Output.innerText = "N/A";
+            let idx2 = data[key][E1].length-1;
+            while(idx2 > -1 && data[key][E1][idx2][0] != ex1Std) idx2--;
+            if(idx != idx2) {
+                ex1Output.innerText = newSystem ? `${((100-idx2)/2).toFixed(1)} ~ ${((100-idx)/2).toFixed(1)}` : `${50-idx2} ~ ${50-idx}`
             } else {
-                let idx2 = data[key][E2].length-1;
-                while(idx2 > -1 && data[key][E2][idx2][0] != ex2Std) idx2--;
-                if(idx != idx2) {
-                    ex2Output.innerText = `${50-idx2} ~ ${50-idx}`
-                } else {
-                    ex2Output.innerText = 50-idx;
-                }
-            } 
-        } else {
-            ex2Output.innerText = "X";
-        }
-        ex2[1].firstChild.style = ex2Output.innerText != "X" ? "color: #3030EE" : "color: #EE3030"; 
+                ex1Output.innerText = newSystem ? ((100-idx)/2).toFixed(1) : 50-idx;
+            }
+        } 
+    } else {
+        ex1Output.innerText = "X";
     }
+    ex1[2].firstChild.style = ex1Output.innerText != "X" ? "color: #3030EE" : "color: #EE3030"; 
+
+    // 수학 처리 부분 (고1, 고2)
+    idx = 0;
+    if(!ex2Std) {
+        ex2Output.innerText = "";
+    } else if(0 <= ex2Std && ex2Std <= 100) {
+        while(idx < data[key][E2].length && data[key][E2][idx][0] != ex2Std) idx++;
+        if(idx >= data[key][E2].length) {
+            ex2Output.innerText = "N/A";
+        } else {
+            let idx2 = data[key][E2].length-1;
+            while(idx2 > -1 && data[key][E2][idx2][0] != ex2Std) idx2--;
+            if(idx != idx2) {
+                ex2Output.innerText = `${50-idx2} ~ ${50-idx}`
+            } else {
+                ex2Output.innerText = 50-idx;
+            }
+        } 
+    } else {
+        ex2Output.innerText = "X";
+    }
+    ex2[1].firstChild.style = ex2Output.innerText != "X" ? "color: #3030EE" : "color: #EE3030"; 
+    
 }
 
 // 크럭스 테이블 이미지 출력
