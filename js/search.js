@@ -838,7 +838,7 @@ function showInfo2() {
     }
     ex1[2].firstChild.style = ex1Output.innerText != "X" ? "color: #3030EE" : "color: #EE3030"; 
 
-    // 수학 처리 부분 (고1, 고2)
+    // 탐구2 처리 부분
     idx = 0;
     if(!ex2Std) {
         ex2Output.innerText = "";
@@ -850,9 +850,9 @@ function showInfo2() {
             let idx2 = data[key][E2].length-1;
             while(idx2 > -1 && data[key][E2][idx2][0] != ex2Std) idx2--;
             if(idx != idx2) {
-                ex2Output.innerText = `${50-idx2} ~ ${50-idx}`
+                ex2Output.innerText = newSystem ? `${((100-idx2)/2).toFixed(1)} ~ ${((100-idx)/2).toFixed(1)}` : `${50-idx2} ~ ${50-idx}`
             } else {
-                ex2Output.innerText = 50-idx;
+                ex2Output.innerText = newSystem ? ((100-idx)/2).toFixed(1) : 50-idx;
             }
         } 
     } else {
