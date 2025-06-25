@@ -520,7 +520,7 @@ function showInfo1() {
         // 원점수 처리 (탐구 1선택)
         if(!exp1Score) {
             exp1El[3].innerText = exp1El[4].innerText = exp1El[5].innerText = ''; 
-        } else if (0 <= exp2Score && exp2Score <= 50 && exp2Score != 1 && exp2Score != 49) {
+        } else if (0 <= exp1Score && exp1Score <= 50 && exp1Score != 1 && exp1Score != 49) {
             exp1El[3].innerText = data[key][subject][50-exp1Score][0];
             exp1El[4].innerText = data[key][subject][50-exp1Score][1];
             exp1El[5].innerText = data[key][subject][50-exp1Score][2];
@@ -539,6 +539,7 @@ function showInfo1() {
             exp2El[4].innerText = data[key][subject][50-exp2Score][2];
         } else {
             exp2El[2].innerText = exp2El[3].innerText = exp2El[4].innerText = 'X'; 
+            console.log('vv')
         }
         Ex2SSN.value = exp2El[4].innerText != "X" ? "color: #3030EE" : "color: #EE3030";
     }
