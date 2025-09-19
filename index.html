@@ -41,9 +41,9 @@
                 시험 유형 : 
                 <input type="radio" id="sat" name="test_type" value="sat">
                 <label for="sat">고3 평가원</label>
-                <input type="radio" id="3rd" name="test_type" value="3rd" checked>
+                <input type="radio" id="3rd" name="test_type" value="3rd">
                 <label for="3rd">고3 교육청</label>
-                <input type="radio" id="2nd" name="test_type" value="2nd">
+                <input type="radio" id="2nd" name="test_type" value="2nd" checked>
                 <label for="2nd">고2 교육청</label>
                 <input type="radio" id="1st" name="test_type" value="1st">
                 <label for="1st">고1 교육청 </label>
@@ -68,7 +68,7 @@
             </p> -->
 
             <!-- 고3 3모, 5모, 7모, 10모 성적표 나온 날 (시험 유형 checked 고3 교육청으로 바꿀 것)-->
-            <p id="test_name">
+            <!-- <p id="test_name">
                 시험명 : 
                 <select name='year' id='year' onchange='yearChange()'>
                     <option value="2025" selected>2025</option> 
@@ -82,10 +82,10 @@
                     <option value="7" selected>7</option>
                 </select>
                 <span>월 고3 전국연합학력평가</span>
-            </p>
+            </p> -->
 
             <!-- 고2 6모, 9모 성적표 나온 날 (시험 유형 checked 고2 교육청으로 바꿀 것)-->
-            <!-- <p id="test_name">
+            <p id="test_name">
                 시험명 : 
                 <select name='year' id='year' onchange='yearChange()'>
                     <option value="2025" selected>2025</option> 
@@ -95,10 +95,12 @@
                 </select>학년도 
                 <select name='month', id='month'>
                     <option value="3">3</option>
-                    <option value="6" selected>6</option>
+                    <option value="6">6</option>
+                    <option value="9" selected>9</option>
+                    <option value="10">10</option>
                 </select>
                 <span>월 고2 전국연합학력평가</span>
-            </p> -->
+            </p>
 
             <p id="button">
                 <button type="button" onclick="makeTable(0)" class="btn1">원점수 → 표준점수/백분위/등급</button>
