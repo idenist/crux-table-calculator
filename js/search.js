@@ -65,7 +65,7 @@ typeEls.forEach((type) => {
 
         // 월 디폴트값 설정
         if(type == "sat" && yearEl.value == "2026") {
-            document.querySelector('option[value = "6"]').selected = true; 
+            document.querySelector('option[value = "9"]').selected = true; 
         } else if(type == "3rd" && yearEl.value == "2025") {
             document.querySelector('option[value = "7"]').selected = true; 
         } else if(type == "2nd" && yearEl.value == "2025") {
@@ -103,7 +103,7 @@ function yearChange() {
     if(type == "sat" && yearEl.value != "2026") {
         document.querySelector('option[value = "11"]').selected = true; 
     } else if(type == "sat"){
-        document.querySelector('option[value = "6"]').selected = true; 
+        document.querySelector('option[value = "9"]').selected = true; 
     } else if(type == "3rd" && yearEl.value == "2025") {
         document.querySelector('option[value = "7"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2025") {
