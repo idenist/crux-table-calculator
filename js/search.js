@@ -140,10 +140,6 @@ function makeTable(mode) {
         divEl.innerText = "해당 시험의 성적 발표일은 10월 29일(수)입니다."
         return;
     }
-    if(type == "sat" && year == "2026" && month == "9") {
-        divEl.innerText = "해당 시험의 성적 발표일은 9월 30일(화)입니다."
-        return;
-    }
     if(type == "sat" && year == "2026" && month == "11") {
         divEl.innerText = "해당 시험의 성적 발표일은 12월 5일(금)입니다."
         return;
