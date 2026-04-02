@@ -88,7 +88,7 @@ function yearChange() {
     let months;
 
     if(type == "sat") {
-        months = (yearEl.value == 2027) ? ["11"] : ["6", "9", "11"]
+        months = (yearEl.value == 2028) ? ["11"] : ["6", "9", "11"]
     } else if(type == "3rd") {
         months = (yearEl.value == 2026) ? ["3"] :
                 (yearEl.value >= 2024) ? ["3", "5", "7", "10"] : ["3", "4", "7", "10"];
@@ -150,7 +150,7 @@ function makeTable(mode) {
         return;
     }
     if(type == "sat" && year == "2027" && month == "6") {
-        divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(na)입니다."
+        divEl.innerText = "해당 시험의 성적 발표일은 7월 1일(수)입니다."
         return;
     }
     if(year == "2026" && month == "7") {
@@ -162,7 +162,7 @@ function makeTable(mode) {
         return;
     }
     if(type == "sat" && year == "2027" && month == "9") {
-        divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(na)입니다."
+        divEl.innerText = "해당 시험의 성적 발표일은 9월 29일(화)입니다."
         return;
     }
     if(year == "2026" && month == "10") {
