@@ -394,7 +394,7 @@ const tableType5 =
             <td><button type="button" onclick="printTable(3)">보기</button></td>\
         </tr>\
         <tr id="ex1">\
-            <td rowspan="2">탐구</td>\
+            <td>사회탐구</td>\
             <td class="ex1s">통합사회</td>\
             <td class="ex1w"><input type="text" name="score" maxlength="4" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
             <td class="ex1p"></td>\
@@ -403,6 +403,7 @@ const tableType5 =
             <td><button type="button" onclick="printTable(4)">보기</button></td>\
         </tr>\
         <tr id="ex2">\
+            <td>과학탐구</td>\
             <td class="ex2s">통합과학</td>\
             <td class="ex2w"><input type="text" name="score" maxlength="4" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
             <td class="ex2p"></td>\
@@ -429,8 +430,71 @@ const tableType5 =
             *** 유효한 원점수란? ***<br>\
             1) 국어, 수학, 영어: 0부터 100까지의 정수 <span style="color:red">(1과 99는 유효하지 않음)</span><br>\
             2) 한국사: 0부터 50까지의 정수 <span style="color:red">(1과 49는 유효하지 않음)</span><br>\
-            3) 탐구: 0부터 50까지의 실수 중 0.5의 배수 <span style="color:red">(0.5와 1과 49와 49.5는 유효하지 않음)</span><br>\
+            3) 사회·과학/직업탐구: 0부터 50까지의 실수 중 0.5의 배수 <span style="color:red">(0.5와 1과 49와 49.5는 유효하지 않음)</span><br>\
             4) 제2외국어/한문: 0부터 50까지의 정수</li>\
         </span>\
     </ul>\
+'
+
+const tableType6 = 
+'<table class="rev">\
+    <caption></caption>\
+    <thead>\
+        <tr>\
+            <th width = "19%">과목</th>\
+            <th width = "24%">선택과목</th>\
+            <th width = "19%">표준점수</th>\
+            <th width = "19%">원점수</th>\
+            <th width = "19%">통계자료</th>\
+        </tr>\
+    </thead>\
+    <tbody>\
+        <tr id="kor">\
+            <td>국어</td>\
+            <td>-</td>\
+            <td class="kp"><input type="text" name="score" maxlength="3" placeholder="입력란" onchange="showInfo2()" style=""></input></td>\
+            <td class="kw"></td>\
+            <td><button type="button" onclick="printTable(0)">보기</button></td>\
+        </tr>\
+        <tr id="math">\
+            <td>수학</td>\
+            <td>-</td>\
+            <td class="mp"><input type="text" name="score" maxlength="3" placeholder="입력란" onchange="showInfo2()" style=""></input></td>\
+            <td class="mw"></td>\
+            <td><button type="button" onclick="printTable(1)">보기</button></td>\
+        <tr></tr>\
+        <tr></tr>\
+        </tr>\
+        <tr id="ex1">\
+            <td>사회탐구</td>\
+            <td class="ex1s">통합사회</td>\
+            <td class="ex1w"><input type="text" name="score" maxlength="3" placeholder="입력란" onchange="showInfo2()" style=""></input></td>\
+            <td class="ex1d"></td>\
+            <td><button type="button" onclick="printTable(4)">보기</button></td>\
+        </tr>\
+        <tr id="ex2">\
+            <td>과학탐구</td>\
+            <td class="ex2s">통합과학</td>\
+            <td class="ex2w"><input type="text" name="score" maxlength="3" placeholder="입력란" onchange="showInfo2()" style=""></input></td>\
+            <td class="ex2d"></td>\
+            <td><button type="button" onclick="printTable(5)">보기</button></td>\
+        </tr>\
+    </tbody>\
+</table>\
+<ul>\
+    <li>모바일로 접속하신 경우, 반드시 <strong>선택과목을 먼저 지정</strong>하신 후에 점수를 입력해주세요.<br>\
+    점수를 먼저 입력하고 선택과목을 나중에 바꾸면 계산 결과가 이전 선택과목 기준으로 출력되는 문제가 있습니다.</li>\
+    <li>\
+        유효하지 않은 표준점수를 입력하면 결과가 "X"로 나옵니다.<br>\
+        <span style="color:blue">\
+            *** 유효한 표준점수란? ***<br>\
+            1) 국어, 수학: 0부터 200까지의 정수<br>\
+            2) 사회·과학/직업탐구: 0부터 100까지의 정수<br>\
+        </span>\
+    </li>\
+    <li>\
+        입력된 표준점수가 유효하지만 해당 시험에 없는 표준점수일 경우에는 결과에 "N/A"가 출력됩니다.<br>\
+        <span style="color:#888888">예) 어떤 과목 만점자의 표준점수가 141인데, 이 과목 표준점수를 142로 입력하면 N/A 출력</span>\
+    </li>\
+</ul>\
 ';

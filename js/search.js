@@ -38,15 +38,17 @@ typeEls.forEach((type) => {
         // years와 months의 옵션 지정 ({수능, {3학년, {1,2학년}}}의 논리로 구성되어 있음)
         if(type == "sat") {
             years = ["2027", "2026", "2025", "2024", "2023", "2022"]; 
-            months = ["6", "9", "11"];
+            months = (yearEl.value == 2028) ? ["11"] : ["6", "9", "11"]
             TNSE.innerText = ""
         } else {
             years = ["2026", "2025", "2024", "2023", "2022"]; // years는 1st~3rd가 공통됨 
             if(type == "3rd") {
-                months = ["3", "5", "7", "10"]; // 2024 추가 이후에는 5로 바꾸기
+                months = (yearEl.value == 2026) ? ["3"] :
+                    (yearEl.value >= 2024) ? ["3", "5", "7", "10"] : ["3", "4", "7", "10"];
                 TNSE.innerText = "월 고3 전국연합학력평가";
             } else {
-                months = ["3", "6", "9", "10"]; // months는 1st, 2nd가 공통됨 (2024 추가 이후에는 10으로 바꾸기)
+                months = (yearEl.value == 2026) ? ["3"] :
+                    (yearEl.value >= 2024) ? ["3", "6", "9", "10"] : ["3", "6", "9", "11"];
                 if(type == "2nd")
                     TNSE.innerText = "월 고2 전국연합학력평가";
                 else
@@ -60,18 +62,18 @@ typeEls.forEach((type) => {
         if(type == "sat") {
             document.querySelector('option[value = "2026"]').selected = true; 
         } else{
-            document.querySelector('option[value = "2025"]').selected = true;
+            document.querySelector('option[value = "2026"]').selected = true;
         }
 
         // 월 디폴트값 설정
         if(type == "sat" && yearEl.value == "2026") {
             document.querySelector('option[value = "11"]').selected = true; 
-        } else if(type == "3rd" && yearEl.value == "2025") {
-            document.querySelector('option[value = "10"]').selected = true; 
-        } else if(type == "2nd" && yearEl.value == "2025") {
-            document.querySelector('option[value = "10"]').selected = true; 
-        } else if(type == "1st" && yearEl.value == "2025") {
-            document.querySelector('option[value = "10"]').selected = true; 
+        } else if(type == "3rd" && yearEl.value == "2026") {
+            document.querySelector('option[value = "3"]').selected = true; 
+        } else if(type == "2nd" && yearEl.value == "2026") {
+            document.querySelector('option[value = "3"]').selected = true; 
+        } else if(type == "1st" && yearEl.value == "2026") {
+            document.querySelector('option[value = "3"]').selected = true; 
         }
     })
 })
@@ -104,12 +106,12 @@ function yearChange() {
         document.querySelector('option[value = "11"]').selected = true; 
     } else if(type == "sat"){
         document.querySelector('option[value = "11"]').selected = true; 
-    } else if(type == "3rd" && yearEl.value == "2025") {
-        document.querySelector('option[value = "10"]').selected = true; 
-    } else if(type == "2nd" && yearEl.value == "2025") {
-        document.querySelector('option[value = "10"]').selected = true; 
-    } else if(type == "1st" && yearEl.value == "2025") {
-        document.querySelector('option[value = "10"]').selected = true; 
+    } else if(type == "3rd" && yearEl.value == "2026") {
+        document.querySelector('option[value = "3"]').selected = true; 
+    } else if(type == "2nd" && yearEl.value == "2026") {
+        document.querySelector('option[value = "3"]').selected = true; 
+    } else if(type == "1st" && yearEl.value == "2026") {
+        document.querySelector('option[value = "3"]').selected = true; 
     }
 }
 // 성적표 생성 함수
@@ -137,8 +139,8 @@ function makeTable(mode) {
                         || (type == "sat" && year >= 2028)
 
     // 성적통지일 나온 시험만 여기에 나열할 것
-    if(year == "2026" && month == "3") {
-        divEl.innerText = "해당 시험의 성적 발표일은 4월 9일(목)입니다."
+    if(year == "2027" && month == "3") {
+        divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(na)입니다."
         return;
     }
     if(year == "2026" && month == "5") {
@@ -179,14 +181,16 @@ function makeTable(mode) {
 
     // 국어와 수학이 공통/선택으로 나뉘어 있는가? (있으면 tableType2, 없으면 tableType1)
     if(mode == 0) {
-        if(newSystem)
+        if(newSystem) 
             divEl.innerHTML = tableType5;
         else if(type == "sat" || type == "3rd") 
             divEl.innerHTML = tableType2;
         else
             divEl.innerHTML = tableType1;
     } else {
-        if(type == "sat" || type == "3rd") 
+        if(newSystem)
+            divEl.innerHTML = tableType6;
+        else if(type == "sat" || type == "3rd") 
             divEl.innerHTML = tableType4;
         else
             divEl.innerHTML = tableType3;
@@ -222,14 +226,15 @@ function makeTable(mode) {
         if(mode == 0) {
             if(type == "1st" && month == "3") {
                 ex1.children[1].innerText = "사회";
-                ex2.children[0].innerText = "과학";
-            } else {
-                ex1.children[1].innerText = "통합사회";
-                ex2.children[0].innerText = "통합과학";
-            }
+                ex2.children[1].innerText = "과학";
+            } 
+            ex2.children[1].style.backgroundColor = "#CCFFCC";
         } else {
-            ex1.children[1].innerText = "통합사회";
-            ex2.children[0].innerText = "통합과학";
+            if(type == "1st" && month == "3") {
+                ex1.children[1].innerText = "사회";
+                ex2.children[1].innerText = "과학";
+            }
+            ex2.children[1].style.backgroundColor = "#FFCCFF";
         } 
     } else if(type == "1st") {
         // 1학년인가? (1학년이면 탐구 선택과목 자동 지정, 표준점수와 등급은 지원 안 됨)
@@ -477,21 +482,23 @@ function showInfo1() {
         "X";
     HSSN.value = histEl[5].innerText != "X" ? "color: #3030EE" : "color: #EE3030";
 
-    // 탐구 처리 부분
-    const exp1El = ex1.children;
-    const exp2El = ex2.children;
-    const exp1Score = exp1El[2].firstChild.value; // 탐구1 원점수
-    const exp2Score = exp2El[1].firstChild.value; // 탐구2 원점수
-    const Ex1SSN = exp1El[2].firstChild.getAttributeNode("style");
-    const Ex2SSN = exp2El[1].firstChild.getAttributeNode("style");
     // 탐구 통합
     const newSystem = (type == "1st" && year >= 2025 && !(year == 2025 && month == 3))  
                         || (type == "2nd" && year >= 2026)
                         || (type == "3rd" && year >= 2027)
                         || (type == "sat" && year >= 2028)
 
+    // 탐구 처리 부분
+    const exp1El = ex1.children;
+    const exp2El = ex2.children;
+    const exp1Score = exp1El[2].firstChild.value; // 탐구1 원점수
+    const exp2Score = exp2El[newSystem ? 2 : 1].firstChild.value; // 탐구2 원점수
+    const Ex1SSN = exp1El[2].firstChild.getAttributeNode("style");
+    const Ex2SSN = exp2El[newSystem ? 2 : 1].firstChild.getAttributeNode("style");
+
+
     if(newSystem) {
-        let subject = "통합사회";
+        let subject = (type == "1st" && month == "3") ? "사회" : "통합사회";
         // 원점수 처리 (탐구 1선택)
         if(!exp1Score) {
             exp1El[3].innerText = exp1El[4].innerText = exp1El[5].innerText = ''; 
@@ -506,18 +513,18 @@ function showInfo1() {
         }
         Ex1SSN.value = exp1El[5].innerText != "X" ? "color: #3030EE" : "color: #EE3030";
 
-        subject = "통합과학";
+        subject = (type == "1st" && month == "3") ? "과학" : "통합과학";
         // 원점수 처리 (탐구 2선택)
         if(!exp2Score) {
-            exp2El[2].innerText = exp2El[3].innerText = exp2El[4].innerText = ''; 
+            exp2El[3].innerText = exp2El[4].innerText = exp2El[5].innerText = ''; 
         } else if (0 <= exp2Score && exp2Score <= 50 
             && exp2Score != 0.5 && exp2Score != 1 && exp2Score != 49 && exp2Score != 49.5
             && exp2Score*2 % 1 == 0) {
-            exp2El[2].innerText = data[key][subject][100-exp2Score*2][0];
-            exp2El[3].innerText = data[key][subject][100-exp2Score*2][1];
-            exp2El[4].innerText = data[key][subject][100-exp2Score*2][2];
+            exp2El[3].innerText = data[key][subject][100-exp2Score*2][0];
+            exp2El[4].innerText = data[key][subject][100-exp2Score*2][1];
+            exp2El[5].innerText = data[key][subject][100-exp2Score*2][2];
         } else {
-            exp2El[2].innerText = exp2El[3].innerText = exp2El[4].innerText = 'X'; 
+            exp2El[3].innerText = exp2El[4].innerText = exp2El[5].innerText = 'X'; 
         }
         Ex2SSN.value = exp2El[4].innerText != "X" ? "color: #3030EE" : "color: #EE3030";
     } else if(type == "1st") {
@@ -560,7 +567,6 @@ function showInfo1() {
             exp2El[4].innerText = data[key][subject][50-exp2Score][2];
         } else {
             exp2El[2].innerText = exp2El[3].innerText = exp2El[4].innerText = 'X'; 
-            console.log('vv')
         }
         Ex2SSN.value = exp2El[4].innerText != "X" ? "color: #3030EE" : "color: #EE3030";
     }
@@ -832,7 +838,7 @@ function showInfo2() {
     const ex1 = document.querySelector("#ex1").children;
     const ex2 = document.querySelector("#ex2").children;
     const E1 = newSystem ? ex1[1].innerText : ex1[1].firstChild.value;
-    const E2 = newSystem ? ex2[0].innerText :ex2[0].firstChild.value;
+    const E2 = newSystem ? ex2[0].innerText : ex2[0].firstChild.value;
     const ex1Std = ex1[2].firstChild.value;
     const ex2Std = ex2[1].firstChild.value;
     const ex1Output = (newSystem || type == "2nd") ? ex1[3] : ex1[4];
@@ -894,16 +900,18 @@ function printTable (subNum) {
     if(subNum <= 3) {
         subjectName = subEl[0].innerText;
     } else {
-        if(type == "1st") {
+        if(type == "1st" && (year <= 2024 || year == 2025 && month == 3)) {
             if(subNum == 5)
                 subjectName = subEl[0].innerText;
             else   
                 subjectName = subEl[1].innerText;
-        } else {
+        } else if(type == "2nd" && year <= 2025 || type == "3rd" && year <= 2026 || type == "sat" && year <= 2027) {
             if(subNum == 5)
                 subjectName = subEl[0].firstElementChild.value;
             else   
                 subjectName = subEl[1].firstElementChild.value;
+        } else {
+            subjectName = subEl[1].innerText;
         }
     }
         
