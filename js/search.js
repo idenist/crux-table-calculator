@@ -838,11 +838,11 @@ function showInfo2() {
     const ex1 = document.querySelector("#ex1").children;
     const ex2 = document.querySelector("#ex2").children;
     const E1 = newSystem ? ex1[1].innerText : ex1[1].firstChild.value;
-    const E2 = newSystem ? ex2[0].innerText : ex2[0].firstChild.value;
+    const E2 = newSystem ? ex2[1].innerText : ex2[0].firstChild.value;
     const ex1Std = ex1[2].firstChild.value;
-    const ex2Std = ex2[1].firstChild.value;
-    const ex1Output = (newSystem || type == "2nd") ? ex1[3] : ex1[4];
-    const ex2Output = (newSystem || type == "2nd") ? ex2[2] : ex2[3];
+    const ex2Std = ex2[newSystem ? 2 : 1].firstChild.value;
+    const ex1Output = ex1[newSystem ? 3 : type == "3rd" ? 4 : 3];
+    const ex2Output = ex2[newSystem ? 3 : type == "2nd" ? 2 : 3];
 
     // 탐구1 처리 부분
     let idx = 0;
@@ -886,7 +886,7 @@ function showInfo2() {
     } else {
         ex2Output.innerText = "X";
     }
-    ex2[1].firstChild.style = ex2Output.innerText != "X" ? "color: #3030EE" : "color: #EE3030"; 
+    ex2[newSystem ? 2 : 1].firstChild.style = ex2Output.innerText != "X" ? "color: #3030EE" : "color: #EE3030"; 
     
 }
 
