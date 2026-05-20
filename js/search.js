@@ -47,7 +47,7 @@ typeEls.forEach((type) => {
                     (yearEl.value >= 2024) ? ["3", "5", "7", "10"] : ["3", "4", "7", "10"];
                 TNSE.innerText = "월 고3 전국연합학력평가";
             } else {
-                months = (yearEl.value == 2026) ? ["3", "5"] :
+                months = (yearEl.value == 2026) ? ["3"] :
                     (yearEl.value >= 2024) ? ["3", "6", "9", "10"] : ["3", "6", "9", "11"];
                 if(type == "2nd")
                     TNSE.innerText = "월 고2 전국연합학력평가";
@@ -69,7 +69,7 @@ typeEls.forEach((type) => {
         if(type == "sat" && yearEl.value == "2026") {
             document.querySelector('option[value = "11"]').selected = true; 
         } else if(type == "3rd" && yearEl.value == "2026") {
-            document.querySelector('option[value = "3"]').selected = true; 
+            document.querySelector('option[value = "5"]').selected = true; 
         } else if(type == "2nd" && yearEl.value == "2026") {
             document.querySelector('option[value = "3"]').selected = true; 
         } else if(type == "1st" && yearEl.value == "2026") {
@@ -95,7 +95,7 @@ function yearChange() {
         months = (yearEl.value == 2026) ? ["3", "5"] :
                 (yearEl.value >= 2024) ? ["3", "5", "7", "10"] : ["3", "4", "7", "10"];
     } else {
-        months = (yearEl.value == 2026) ? ["3", "5"] :
+        months = (yearEl.value == 2026) ? ["3"] :
                 (yearEl.value >= 2024) ? ["3", "6", "9", "10"] : ["3", "6", "9", "11"];
     }
 
@@ -107,7 +107,7 @@ function yearChange() {
     } else if(type == "sat"){
         document.querySelector('option[value = "11"]').selected = true; 
     } else if(type == "3rd" && yearEl.value == "2026") {
-        document.querySelector('option[value = "3"]').selected = true; 
+        document.querySelector('option[value = "5"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2026") {
         document.querySelector('option[value = "3"]').selected = true; 
     } else if(type == "1st" && yearEl.value == "2026") {
@@ -141,10 +141,6 @@ function makeTable(mode) {
     // 성적통지일 나온 시험만 여기에 나열할 것
     if(year == "2027" && month == "3") {
         divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(na)입니다."
-        return;
-    }
-    if(year == "2026" && month == "5") {
-        divEl.innerText = "해당 시험의 성적 발표일은 5월 19일(화)입니다."
         return;
     }
     if((type == "1st" || type == "2nd") && year == "2026" && month == "6") {
