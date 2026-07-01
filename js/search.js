@@ -151,8 +151,8 @@ function makeTable(mode) {
         divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(na)입니다."
         return;
     }
-    if(type == "sat" && year == "2027" && month == "6") {
-        divEl.innerText = "해당 시험의 성적 발표일은 7월 1일(수)입니다."
+    if(type == "sat" && year == "2028" && month == "6") {
+        divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(na)입니다."
         return;
     }
     if(year == "2026" && month == "7") {
