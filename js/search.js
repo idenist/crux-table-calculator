@@ -60,14 +60,14 @@ typeEls.forEach((type) => {
 
         // 연도 디폴트값 설정
         if(type == "sat") {
-            document.querySelector('option[value = "2026"]').selected = true; 
+            document.querySelector('option[value = "2027"]').selected = true; 
         } else{
-            document.querySelector('option[value = "2026"]').selected = true;
+            document.querySelector('option[value = "2027"]').selected = true;
         }
 
         // 월 디폴트값 설정
-        if(type == "sat" && yearEl.value == "2026") {
-            document.querySelector('option[value = "11"]').selected = true; 
+        if(type == "sat" && yearEl.value == "2027") {
+            document.querySelector('option[value = "6"]').selected = true; 
         } else if(type == "3rd" && yearEl.value == "2026") {
             document.querySelector('option[value = "5"]').selected = true; 
         } else if(type == "2nd" && yearEl.value == "2026") {
@@ -102,10 +102,10 @@ function yearChange() {
     changeOpts(monthEl, months, type == "sat");
 
     // 월 디폴트값 설정
-    if(type == "sat" && yearEl.value != "2026") {
+    if(type == "sat" && yearEl.value != "2027") {
         document.querySelector('option[value = "11"]').selected = true; 
     } else if(type == "sat"){
-        document.querySelector('option[value = "11"]').selected = true; 
+        document.querySelector('option[value = "6"]').selected = true; 
     } else if(type == "3rd" && yearEl.value == "2026") {
         document.querySelector('option[value = "5"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2026") {
