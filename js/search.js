@@ -841,7 +841,7 @@ function showInfo2() {
     const E2 = newSystem ? ex2[1].innerText : ex2[0].firstChild.value;
     const ex1Std = ex1[2].firstChild.value;
     const ex2Std = ex2[newSystem ? 2 : 1].firstChild.value;
-    const ex1Output = ex1[newSystem ? 3 : type == "3rd" ? 4 : 3];
+    const ex1Output = ex1[newSystem ? 3 : (type == "3rd") || (type == "sat") ? 4 : 3];
     const ex2Output = ex2[newSystem ? 3 : type == "2nd" ? 2 : 3];
 
     // 탐구1 처리 부분
