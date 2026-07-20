@@ -62,14 +62,14 @@ typeEls.forEach((type) => {
         if(type == "sat") {
             document.querySelector('option[value = "2027"]').selected = true; 
         } else{
-            document.querySelector('option[value = "2027"]').selected = true;
+            document.querySelector('option[value = "2026"]').selected = true;
         }
 
         // 월 디폴트값 설정
         if(type == "sat" && yearEl.value == "2027") {
             document.querySelector('option[value = "6"]').selected = true; 
         } else if(type == "3rd" && yearEl.value == "2026") {
-            document.querySelector('option[value = "5"]').selected = true; 
+            document.querySelector('option[value = "7"]').selected = true; 
         } else if(type == "2nd" && yearEl.value == "2026") {
             document.querySelector('option[value = "6"]').selected = true; 
         } else if(type == "1st" && yearEl.value == "2026") {
@@ -107,7 +107,7 @@ function yearChange() {
     } else if(type == "sat"){
         document.querySelector('option[value = "6"]').selected = true; 
     } else if(type == "3rd" && yearEl.value == "2026") {
-        document.querySelector('option[value = "5"]').selected = true; 
+        document.querySelector('option[value = "7"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2026") {
         document.querySelector('option[value = "6"]').selected = true; 
     } else if(type == "1st" && yearEl.value == "2026") {
@@ -155,8 +155,8 @@ function makeTable(mode) {
         divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(na)입니다."
         return;
     }
-    if(year == "2026" && month == "7") {
-        divEl.innerText = "해당 시험의 성적 발표일은 7월 20일(월)입니다."
+    if(year == "2027" && month == "7") {
+        divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(na)입니다."
         return;
     }
     if((type == "1st" || type == "2nd") && year == "2026" && month == "9") {
