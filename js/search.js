@@ -43,11 +43,11 @@ typeEls.forEach((type) => {
         } else {
             years = ["2026", "2025", "2024", "2023", "2022"]; // years는 1st~3rd가 공통됨 
             if(type == "3rd") {
-                months = (yearEl.value >= 2027) ? ["3"] :
+                months = (yearEl.value >= 2026) ? ["3", "5", "7", "10"] :
                     (yearEl.value >= 2024) ? ["3", "5", "7", "10"] : ["3", "4", "7", "10"];
                 TNSE.innerText = "월 고3 전국연합학력평가";
             } else {
-                months = (yearEl.value >= 2027) ? ["3"] :
+                months = (yearEl.value >= 2026) ? ["3", "6", "9", "10"] :
                     (yearEl.value >= 2024) ? ["3", "6", "9", "10"] : ["3", "6", "9", "11"];
                 if(type == "2nd")
                     TNSE.innerText = "월 고2 전국연합학력평가";
