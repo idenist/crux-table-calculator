@@ -67,7 +67,7 @@ typeEls.forEach((type) => {
 
         // 월 디폴트값 설정
         if(type == "sat" && yearEl.value == "2027") {
-            document.querySelector('option[value = "6"]').selected = true; 
+            document.querySelector('option[value = "9"]').selected = true; 
         } else if(type == "3rd" && yearEl.value == "2026") {
             document.querySelector('option[value = "7"]').selected = true; 
         } else if(type == "2nd" && yearEl.value == "2026") {
@@ -105,7 +105,7 @@ function yearChange() {
     if(type == "sat" && yearEl.value != "2027") {
         document.querySelector('option[value = "11"]').selected = true; 
     } else if(type == "sat"){
-        document.querySelector('option[value = "6"]').selected = true; 
+        document.querySelector('option[value = "9"]').selected = true; 
     } else if(type == "3rd" && yearEl.value == "2026") {
         document.querySelector('option[value = "7"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2026") {
@@ -163,8 +163,8 @@ function makeTable(mode) {
         divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(na)입니다."
         return;
     }
-    if(type == "sat" && year == "2027" && month == "9") {
-        divEl.innerText = "해당 시험의 성적 발표일은 9월 29일(화)입니다."
+    if(type == "sat" && year == "2028" && month == "9") {
+        divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(화)입니다."
         return;
     }
     if(year == "2026" && month == "10") {
