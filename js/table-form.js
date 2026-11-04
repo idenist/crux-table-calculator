@@ -429,9 +429,8 @@ const tableType5 =
         <span style="color:blue">\
             *** 유효한 원점수란? ***<br>\
             1) 국어, 수학, 영어: 0부터 100까지의 정수 <span style="color:red">(1과 99는 유효하지 않음)</span><br>\
-            2) 한국사: 0부터 50까지의 정수 <span style="color:red">(1과 49는 유효하지 않음)</span><br>\
+            2) 한국사, 제2외국어/한문: 0부터 50까지의 정수 <span style="color:red">(1과 49는 유효하지 않음)</span><br>\
             3) 사회·과학/직업탐구: 0부터 50까지의 실수 중 0.5의 배수 <span style="color:red">(0.5와 1과 49와 49.5는 유효하지 않음)</span><br>\
-            4) 제2외국어/한문: 0부터 50까지의 정수</li>\
         </span>\
     </ul>\
 '

@@ -69,11 +69,11 @@ typeEls.forEach((type) => {
         if(type == "sat" && yearEl.value == "2027") {
             document.querySelector('option[value = "9"]').selected = true; 
         } else if(type == "3rd" && yearEl.value == "2026") {
-            document.querySelector('option[value = "7"]').selected = true; 
+            document.querySelector('option[value = "10"]').selected = true; 
         } else if(type == "2nd" && yearEl.value == "2026") {
-            document.querySelector('option[value = "9"]').selected = true; 
+            document.querySelector('option[value = "10"]').selected = true; 
         } else if(type == "1st" && yearEl.value == "2026") {
-            document.querySelector('option[value = "9"]').selected = true; 
+            document.querySelector('option[value = "10"]').selected = true; 
         }
     })
 })
@@ -107,11 +107,11 @@ function yearChange() {
     } else if(type == "sat"){
         document.querySelector('option[value = "9"]').selected = true; 
     } else if(type == "3rd" && yearEl.value == "2026") {
-        document.querySelector('option[value = "7"]').selected = true; 
+        document.querySelector('option[value = "10"]').selected = true; 
     } else if(type == "2nd" && yearEl.value == "2026") {
-        document.querySelector('option[value = "9"]').selected = true; 
+        document.querySelector('option[value = "10"]').selected = true; 
     } else if(type == "1st" && yearEl.value == "2026") {
-        document.querySelector('option[value = "9"]').selected = true; 
+        document.querySelector('option[value = "10"]').selected = true; 
     }
 }
 // 성적표 생성 함수
@@ -167,8 +167,8 @@ function makeTable(mode) {
         divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(화)입니다."
         return;
     }
-    if(year == "2026" && month == "10") {
-        divEl.innerText = "해당 시험의 성적 발표일은 11월 5일(목)입니다."
+    if(year == "2028" && month == "10") {
+        divEl.innerText = "해당 시험의 성적 발표일은 na월 na일(목)입니다."
         return;
     }
     if(type == "sat" && year == "2027" && month == "11") {
@@ -206,7 +206,11 @@ function makeTable(mode) {
             sfl.parentNode.removeChild(sfl);
         } else {
             let sflList;
-            if(type == "2nd" || type == "3rd" && month == "10") {
+            if((year >= 2026 && type == "2nd") || (year >= 2027 && type == "3rd") && month == "10") {
+                sflList = ["독일어", "프랑스어", "스페인어", "중국어", "일본어", "러시아어", "한문"];
+            } else if(year >= 2028 && type == "sat") {
+                sflList = ["독일어", "프랑스어", "스페인어", "중국어", "일본어", "러시아어", "아랍어", "베트남어", "한문"];
+            } else if(type == "2nd" || type == "3rd" && month == "10") {
                 sflList = ["독일어Ⅰ", "프랑스어Ⅰ", "스페인어Ⅰ", "중국어Ⅰ",
                     "일본어Ⅰ", "러시아어Ⅰ", "한문Ⅰ"];
             } else {
@@ -334,7 +338,7 @@ function makeTable(mode) {
 
     // 너비 조정
     if(mode == 0) {
-        if(type == "2nd" && month.length == 2) {
+        if(year <= 2025 && type == "2nd" && month.length == 2) {
             const thEl = document.querySelectorAll("th");
             thEl[0].getAttributeNode("width").value = "20%"
             thEl[1].getAttributeNode("width").value = "25%"
@@ -343,8 +347,19 @@ function makeTable(mode) {
             thEl[4].getAttributeNode("width").value = "10%"
             thEl[5].getAttributeNode("width").value = "10%"
             thEl[6].getAttributeNode("width").value = "10%"
+        } else if((type == "2nd" || year >= 2027 && type == "3rd") && month.length == 2) {
+            const thEl = document.querySelectorAll("th");
+            thEl[0].getAttributeNode("width").value = "17%"
+            thEl[1].getAttributeNode("width").value = "17%"
+            thEl[2].getAttributeNode("width").value = "18%"
+            thEl[3].getAttributeNode("width").value = "12%"
+            thEl[4].getAttributeNode("width").value = "12%"
+            thEl[5].getAttributeNode("width").value = "12%"
+            thEl[6].getAttributeNode("width").value = "12%"
         }
     }
+
+    
 }
 
 function showInfo1() {
