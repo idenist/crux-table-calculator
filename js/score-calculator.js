@@ -82,12 +82,16 @@ const ScoreCalculator = (() => {
     }
 
     function reverseWithElective(coefficients, standard, elective, { commonMax }) {
-        // 기존 역산의 반올림 경계(0.49999)와 절삭 규칙을 보존한다.
-        const [a, b, c] = coefficients;
-        const min = parseInt(1 + ((standard - 0.5) - c - b * elective) / a);
-        const max = parseInt(((standard + 0.49999) - c - b * elective) / a);
-        if (!isValidPart(min, commonMax) || !isValidPart(max, commonMax)) return "N/A";
-        return formatRange(min + elective, max + elective);
+        // 가능한 공통점수만 정방향으로 계산해 반올림 경계와 제외 점수를 함께 처리한다.
+        let min = -1;
+        let max = -1;
+        for (let common = 0; common <= commonMax; common++) {
+            if (!isValidPart(common, commonMax)) continue;
+            if (toStandard(coefficients, common, elective) !== standard) continue;
+            if (min === -1) min = common + elective;
+            max = common + elective;
+        }
+        return formatRange(min, max);
     }
 
     function extremeStandards(total, coefficients, { commonMax, electiveMax }) {
