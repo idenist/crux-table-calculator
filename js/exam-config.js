@@ -7,7 +7,7 @@ const ExamConfig = (() => {
     };
     const baseInquirySubjects = [
         "생활과 윤리", "윤리와 사상", "한국지리", "세계지리", "동아시아사",
-        "세계사", "경제", "정치와 법", "사회∙문화",
+        "세계사", "경제", "정치와 법", "사회·문화",
         "물리학Ⅰ", "화학Ⅰ", "생명과학Ⅰ", "지구과학Ⅰ",
     ];
     const advancedScienceSubjects = ["물리학Ⅱ", "화학Ⅱ", "생명과학Ⅱ", "지구과학Ⅱ"];
@@ -64,9 +64,9 @@ const ExamConfig = (() => {
         const subjects = [...baseInquirySubjects];
         if (type === "sat" || (type === "3rd" && month !== "3")) subjects.push(...advancedScienceSubjects);
         if (type === "sat" || month === "10" || month === "11") {
-            // 기존 data.js와 이미지 파일명에서 고2와 고3의 가운뎃점이 서로 다르다.
+            // 과목명과 이미지 파일명은 가운뎃점 U+00B7로 통일한다.
             subjects.push("성공적인 직업생활", "농업 기초 기술", "공업 일반", "상업 경제",
-                type === "2nd" ? "수산∙해운 산업 기초" : "수산·해운 산업 기초", "인간 발달");
+                "수산·해운 산업 기초", "인간 발달");
         }
         return subjects;
     }
