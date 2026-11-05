@@ -1,5 +1,13 @@
 {
   "dependencies": {
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "test:compat": "node tests/compare-legacy.cjs",
+    "check": "node --check js/exam-config.js && node --check js/score-calculator.js && node --check js/search.js && node --check js/table-form.js"
   }
 }

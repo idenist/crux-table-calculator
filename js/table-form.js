@@ -78,8 +78,7 @@ const tableType1 =
     </tbody>\
 </table>\
     <ul>\
-    <li>모바일로 접속하신 경우, 반드시 <strong>선택과목을 먼저 지정</strong>하신 후에 점수를 입력해주세요.<br>\
-    점수를 먼저 입력하고 선택과목을 나중에 바꾸면 계산 결과가 이전 선택과목 기준으로 출력되는 문제가 있습니다.</li>\
+    <li>점수 또는 선택과목을 변경하면 계산 결과가 갱신됩니다.</li>\
     <li>유효하지 않은 원점수를 입력하면 결과가 "X"로 나옵니다.<br>\
         <span style="color:blue">\
             *** 유효한 원점수란? ***<br>\
@@ -176,8 +175,7 @@ const tableType2 =
     </tbody>\
 </table>\
 <ul>\
-    <li>모바일로 접속하신 경우, 반드시 <strong>선택과목을 먼저 지정</strong>하신 후에 점수를 입력해주세요.<br>\
-    점수를 먼저 입력하고 선택과목을 나중에 바꾸면 계산 결과가 이전 선택과목 기준으로 출력되는 문제가 있습니다.</li>\
+    <li>점수 또는 선택과목을 변경하면 계산 결과가 갱신됩니다.</li>\
     <li>국어 공통과목 원점수 만점: 76점, 선택과목 원점수 만점: 24점</li>\
     <li>수학 공통과목 원점수 만점: 74점, 선택과목 원점수 만점: 26점</li>\
     <li>\
@@ -242,8 +240,7 @@ const tableType3 =
     </tbody>\
 </table>\
 <ul>\
-    <li>모바일로 접속하신 경우, 반드시 <strong>선택과목을 먼저 지정</strong>하신 후에 점수를 입력해주세요.<br>\
-    점수를 먼저 입력하고 선택과목을 나중에 바꾸면 계산 결과가 이전 선택과목 기준으로 출력되는 문제가 있습니다.</li>\
+    <li>점수 또는 선택과목을 변경하면 계산 결과가 갱신됩니다.</li>\
     <li>\
         유효하지 않은 표준점수를 입력하면 결과가 "X"로 나옵니다.<br>\
         <span style="color:blue">\
@@ -309,8 +306,7 @@ const tableType4 =
     </tbody>\
 </table>\
 <ul>\
-    <li>모바일로 접속하신 경우, 반드시 <strong>선택과목을 먼저 지정</strong>하신 후에 점수를 입력해주세요.<br>\
-    점수를 먼저 입력하고 선택과목을 나중에 바꾸면 계산 결과가 이전 선택과목 기준으로 출력되는 문제가 있습니다.</li>\
+    <li>점수 또는 선택과목을 변경하면 계산 결과가 갱신됩니다.</li>\
     <li>\
         유효하지 않은 표준점수를 입력하면 결과가 "X"로 나옵니다.<br>\
         <span style="color:blue">\
@@ -411,6 +407,15 @@ const tableType5 =
             <td class="ex2d"></td>\
             <td><button type="button" onclick="printTable(5)">보기</button></td>\
         </tr>\
+        <tr id="voc">\
+            <td>직업탐구</td>\
+            <td class="vocs">성공적인 직업생활</td>\
+            <td class="vocw"><input type="text" name="score" maxlength="4" placeholder="입력란" onchange="showInfo1()" style=""></input></td>\
+            <td class="vocp"></td>\
+            <td class="vocb"></td>\
+            <td class="vocd"></td>\
+            <td><button type="button" onclick="printTable(\'voc\')">보기</button></td>\
+        </tr>\
         <tr id="sfl">\
             <td>제2외국어/한문</td>\
             <td class="ss"><select onchange=showInfo1()></select></td>\
@@ -423,14 +428,14 @@ const tableType5 =
     </tbody>\
 </table>\
     <ul>\
-    <li>모바일로 접속하신 경우, 반드시 <strong>선택과목을 먼저 지정</strong>하신 후에 점수를 입력해주세요.<br>\
-    점수를 먼저 입력하고 선택과목을 나중에 바꾸면 계산 결과가 이전 선택과목 기준으로 출력되는 문제가 있습니다.</li>\
+    <li>점수 또는 선택과목을 변경하면 계산 결과가 갱신됩니다.</li>\
     <li>유효하지 않은 원점수를 입력하면 결과가 "X"로 나옵니다.<br>\
         <span style="color:blue">\
             *** 유효한 원점수란? ***<br>\
             1) 국어, 수학, 영어: 0부터 100까지의 정수 <span style="color:red">(1과 99는 유효하지 않음)</span><br>\
-            2) 한국사, 제2외국어/한문: 0부터 50까지의 정수 <span style="color:red">(1과 49는 유효하지 않음)</span><br>\
+            2) 한국사: 0부터 50까지의 정수 <span style="color:red">(1과 49는 유효하지 않음)</span><br>\
             3) 사회·과학/직업탐구: 0부터 50까지의 실수 중 0.5의 배수 <span style="color:red">(0.5와 1과 49와 49.5는 유효하지 않음)</span><br>\
+            4) 제2외국어/한문: 0부터 50까지의 정수 <span style="color:red">(1과 49는 유효하지 않음)</span><br>\
         </span>\
     </ul>\
 '
@@ -478,11 +483,17 @@ const tableType6 =
             <td class="ex2d"></td>\
             <td><button type="button" onclick="printTable(5)">보기</button></td>\
         </tr>\
+        <tr id="voc">\
+            <td>직업탐구</td>\
+            <td class="vocs">성공적인 직업생활</td>\
+            <td class="vocp"><input type="text" name="score" maxlength="3" placeholder="입력란" onchange="showInfo2()" style=""></input></td>\
+            <td class="vocw"></td>\
+            <td><button type="button" onclick="printTable(\'voc\')">보기</button></td>\
+        </tr>\
     </tbody>\
 </table>\
 <ul>\
-    <li>모바일로 접속하신 경우, 반드시 <strong>선택과목을 먼저 지정</strong>하신 후에 점수를 입력해주세요.<br>\
-    점수를 먼저 입력하고 선택과목을 나중에 바꾸면 계산 결과가 이전 선택과목 기준으로 출력되는 문제가 있습니다.</li>\
+    <li>점수 또는 선택과목을 변경하면 계산 결과가 갱신됩니다.</li>\
     <li>\
         유효하지 않은 표준점수를 입력하면 결과가 "X"로 나옵니다.<br>\
         <span style="color:blue">\
