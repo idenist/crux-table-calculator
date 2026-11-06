@@ -14,11 +14,14 @@ const ExamConfig = (() => {
     const foreignLanguages = ["독일어", "프랑스어", "스페인어", "중국어", "일본어", "러시아어"];
     // 아직 공개하지 않은 시험의 기존 안내 문구를 보존한다.
     const releaseNotices = [
-        { year: "2027", months: ["3", "5", "7"], date: "na월 na일(na)" },
-        { year: "2027", months: ["6", "9"], types: ["1st", "2nd"], date: "na월 na일(na)" },
+        { year: "2027", months: ["3"], date: "na월 na일(na)" },
+        { year: "2027", months: ["5"], date: "na월 na일(na)" },
+        { year: "2027", months: ["6"], types: ["1st", "2nd"], date: "na월 na일(na)" },
         { year: "2028", months: ["6"], types: ["sat"], date: "na월 na일(na)" },
+        { year: "2027", months: ["7"], date: "na월 na일(na)" },
+        { year: "2027", months: ["9"], types: ["1st", "2nd"], date: "na월 na일(na)" },
         { year: "2028", months: ["9"], types: ["sat"], date: "na월 na일(화)" },
-        { year: "2028", months: ["10"], date: "na월 na일(목)" },
+        { year: "2027", months: ["10"], date: "na월 na일(목)" },
         { year: "2027", months: ["11"], types: ["sat"], date: "12월 11일(금)" },
     ];
 
